@@ -1,31 +1,31 @@
 "use client"
 
 import { useEffect } from "react"
-import { useToast } from "@/components/ui/Toast"
+import { toast } from "sonner"
 import { errorHandler } from "@/lib/errorHandler"
 
 export function GlobalErrorHandler() {
-  const { showError } = useToast()
-
   useEffect(() => {
-    const handleGlobalError = (event: ErrorEvent) => {
-      errorHandler.logError(event.error, "Global Error")
-      showError("เกิดข้อผิดพลาดในระบบ", "กรุณารีเฟรชหน้าเว็บ")
+    const handleError = (event: ErrorEvent) => {
+      console.error('Global error:', event.error)
+      errorHandler.logError(event.error, 'global')
+      toast.error('เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง')
     }
 
     const handleUnhandledRejection = (event: PromiseRejectionEvent) => {
-      errorHandler.logError(new Error(event.reason), "Unhandled Promise Rejection")
-      showError("เกิดข้อผิดพลาดในการประมวลผล", "กรุณาลองใหม่อีกครั้ง")
+      console.error('Unhandled promise rejection:', event.reason)
+      errorHandler.logError(new Error(event.reason), 'promise')
+      toast.error('เกิดข้อผิดพลาดในการเชื่อมต่อ')
     }
 
-    window.addEventListener("error", handleGlobalError)
-    window.addEventListener("unhandledrejection", handleUnhandledRejection)
+    window.addEventListener('error', handleError)
+    window.addEventListener('unhandledrejection', handleUnhandledRejection)
 
     return () => {
-      window.removeEventListener("error", handleGlobalError)
-      window.removeEventListener("unhandledrejection", handleUnhandledRejection)
+      window.removeEventListener('error', handleError)
+      window.removeEventListener('unhandledrejection', handleUnhandledRejection)
     }
-  }, [showError])
+  }, [])
 
   return null
 }

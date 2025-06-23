@@ -1,0 +1,36 @@
+# Vercel Environment Variables Setup Commands
+
+# สำคัญ: ให้รันคำสั่งเหล่านี้ทีละบรรทัด และใส่ค่าที่ถูกต้อง
+
+npx vercel env add NEXT_PUBLIC_SUPABASE_URL production
+# ใส่: https://eifgyklgplgtorxlnger.supabase.co
+
+npx vercel env add NEXT_PUBLIC_SUPABASE_ANON_KEY production  
+# ใส่: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVpZmd5a2xncGxndG9yeGxuZ2VyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTA2NjE4MzcsImV4cCI6MjA2NjIzNzgzN30.ie6ErESCC5zw_mE_rwHxop3j5aHDnfiGvA0rwSY2is4
+
+npx vercel env add SUPABASE_SERVICE_ROLE_KEY production
+# ใส่: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVpZmd5a2xncGxndG9yeGxuZ2VyIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc1MDY2MTgzNywiZXhwIjoyMDY2MjM3ODM3fQ.J0Xap18Dlygl40gFBoZokTdKRjzs1LxoNxVlUi1yltY
+
+npx vercel env add NEXT_PUBLIC_LIFF_ID production
+# ใส่: 2007563809-E0YXRpZM
+
+npx vercel env add LINE_CHANNEL_ID production
+# ใส่: 2007563809
+
+npx vercel env add LINE_CHANNEL_SECRET production
+# ใส่: ae1dead8697ca0255d08a3a78fb5a02a
+
+npx vercel env add ADMIN_LINE_ID production
+# ใส่: U1234567890abcdef (จะหาได้หลัง login ครั้งแรก)
+
+npx vercel env add NEXT_PUBLIC_SITE_URL production
+# ใส่: https://www.secretnumerology.com
+
+npx vercel env add CONTACT_EMAIL production
+# ใส่: support@secretnumerology.com
+
+npx vercel env add CONTACT_PHONE production
+# ใส่: 083-823-4661
+
+npx vercel env add CONTACT_NAME production
+# ใส่: สัญญา มาร์ท 

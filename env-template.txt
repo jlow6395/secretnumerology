@@ -1,0 +1,38 @@
+# ========== DATABASE ==========
+# Supabase Production ✅
+NEXT_PUBLIC_SUPABASE_URL=https://eifgyklgplgtorxlnger.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVpZmd5a2xncGxndG9yeGxuZ2VyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTA2NjE4MzcsImV4cCI6MjA2NjIzNzgzN30.ie6ErESCC5zw_mE_rwHxop3j5aHDnfiGvA0rwSY2is4
+SUPABASE_SERVICE_ROLE_KEY=your-service-role-key-here
+
+# ========== LINE AUTHENTICATION ✅ ==========
+# LINE LIFF - ค่าจริงจาก LINE Developers Console
+NEXT_PUBLIC_LIFF_ID=2007563809-E0YXRpZM
+LINE_CHANNEL_ID=2007563809
+LINE_CHANNEL_SECRET=ae1dead8697ca0255d08a3a78fb5a02a
+
+# ========== ADMIN CONFIG ==========
+# Admin LINE ID (หาได้หลัง deploy และ login ครั้งแรก)
+ADMIN_LINE_ID=U1234567890abcdef
+
+# ========== PAYMENT (Optional) ==========
+OMISE_PUBLIC_KEY=pkey_test_xxxxx
+OMISE_SECRET_KEY=skey_test_xxxxx
+OMISE_WEBHOOK_SECRET=your_webhook_secret
+
+# ========== AI SERVICES (Optional) ==========
+OPENROUTER_API_KEY=sk-or-xxxxx
+
+# ========== SITE CONFIG ==========
+NEXT_PUBLIC_SITE_URL=https://www.secretnumerology.com
+NEXT_PUBLIC_BASE_URL=https://www.secretnumerology.com
+
+# ========== CONTACT INFO ==========
+CONTACT_EMAIL=support@secretnumerology.com
+CONTACT_PHONE=083-823-4661
+CONTACT_NAME=สัญญา มาร์ท
+
+# ========== INSTRUCTIONS ==========
+# 1. Copy ไฟล์นี้เป็น .env.local
+# 2. หา SUPABASE_SERVICE_ROLE_KEY ใน Supabase Dashboard > Settings > API
+# 3. Deploy to Vercel แล้วหา ADMIN_LINE_ID จาก console.log
+# 4. อัปเดต Callback URL ใน LINE Console เป็น production domain 

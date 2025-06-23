@@ -2,7 +2,7 @@
 import { Target, Calendar, Star, TrendingUp, ArrowLeft } from "lucide-react"
 import Link from "next/link"
 import { UnifiedCard } from "@/components/ui/UnifiedCard"
-import { UnifiedMobileNav } from "@/components/navigation/UnifiedMobileNav"
+// import { UnifiedMobileNav } from "@/components/navigation/UnifiedMobileNav"
 
 export default function YouthLifeCyclePage() {
   // ข้อมูลตัวอย่างสำหรับช่วงเยาว์วัย (0-28 ปี)
@@ -136,7 +136,7 @@ export default function YouthLifeCyclePage() {
           ))}
         </div>
       </div>
-      <UnifiedMobileNav />
+      {/* <UnifiedMobileNav /> */}
     </div>
   )
 }

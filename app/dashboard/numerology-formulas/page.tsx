@@ -1,252 +1,394 @@
 "use client"
 
-import UnifiedCard from "@/components/ui/UnifiedCard"
-import Breadcrumb from "@/components/navigation/Breadcrumb"
-import { Calculator, Target, Heart, Star, Crown } from "lucide-react"
+import React, { useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { NumerologyIcons } from '@/design-system/icons/NumerologyIcons'
+import { getCompleteNumberIcon } from '@/design-system/icons/AllNumberIcons'
+import { Button } from '@/components/ui/button'
+import { Card } from '@/components/ui/card'
+import { Badge } from '@/components/ui/badge'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { ArrowLeft, Calculator, Calendar, User, Heart, Star, Zap, Target, TrendingUp, Clock } from 'lucide-react'
+
+interface FormulaData {
+  id: string
+  name: string
+  category: 'birth' | 'name' | 'timing' | 'advanced'
+  formula: string
+  description: string
+  example: string
+  result: string
+  meaning: string
+  icon: any
+  color: string
+}
 
 export default function NumerologyFormulasPage() {
-  const formulas = [
+  const router = useRouter()
+  const [selectedCategory, setSelectedCategory] = useState<'all' | 'birth' | 'name' | 'timing' | 'advanced'>('all')
+
+  const formulas: FormulaData[] = [
+    // Birth-based Formulas
     {
-      id: "life-path",
-      name: "Life Path Number",
-      description: "เลขเส้นทางชีวิต คำนวณจากวันเกิด",
-      formula: "วัน + เดือน + ปี (ลดเหลือเลขเดียว)",
-      example: "15/08/1990 = 1+5+0+8+1+9+9+0 = 33 = 3+3 = 6",
+      id: 'life-path',
+      name: 'Life Path Number',
+      category: 'birth',
+      formula: 'วันเกิด + เดือนเกิด + ปีเกิด (ลดเหลือเลขเดียว)',
+      description: 'เส้นทางชีวิตหลักของคุณ แสดงถึงจุดประสงค์และภารกิจในชีวิต',
+      example: '15/05/1990 → 1+5+0+5+1+9+9+0 = 30 → 3+0 = 3',
+      result: 'เลข 3',
+      meaning: 'ความคิดสร้างสรรค์ การสื่อสาร ความมีเสน่ห์',
+      icon: Star,
+      color: '#FFD700'
+    },
+    {
+      id: 'talent',
+      name: 'Talent Number',
+      category: 'birth',
+      formula: 'ผลรวมตัวเลขทั้งหมดในวันเกิด (ไม่ลด)',
+      description: 'พรสวรรค์และความสามารถธรรมชาติที่คุณมี',
+      example: '15/05/1990 → 1+5+0+5+1+9+9+0 = 30',
+      result: '30/3',
+      meaning: 'พรสวรรค์ด้านการสื่อสาร แต่มีพลังงาน 30 (ความรับผิดชอบสูง)',
+      icon: Zap,
+      color: '#9D4EDD'
+    },
+    {
+      id: 'date-number',
+      name: 'Date Number',
+      category: 'birth',
+      formula: 'วันที่เกิด (ไม่เปลี่ยนแปลง)',
+      description: 'บุคลิกภาพและลักษณะเด่นที่ปรากฏให้คนอื่นเห็น',
+      example: 'เกิดวันที่ 15',
+      result: 'เลข 15',
+      meaning: 'ความเป็นผู้นำ มีความรับผิดชอบ ชอบช่วยเหลือคนอื่น',
+      icon: Calendar,
+      color: '#06D6A0'
+    },
+    {
+      id: 'sun-number',
+      name: 'Sun Number',
+      category: 'birth',
+      formula: 'วัน + เดือน (เฉพาะตัวเลข)',
+      description: 'พลังงานแกนกลางและแรงขับเคลื่อนภายใน',
+      example: '15 + 05 → 1+5+0+5 = 11 → 1+1 = 2',
+      result: 'เลข 2',
+      meaning: 'ความร่วมมือ การทำงานเป็นทีม ความอ่อนโยน',
       icon: Target,
-      color: "#8b5cf6",
-      difficulty: "ง่าย",
-      accuracy: 95,
+      color: '#FFB347'
     },
     {
-      id: "expression",
-      name: "Expression Number",
-      description: "เลขแสดงออก คำนวณจากชื่อเต็ม",
-      formula: "ผลรวมค่าตัวอักษรในชื่อเต็ม",
-      example: "A=1, B=2, C=3... รวมทุกตัวอักษร",
-      icon: Star,
-      color: "#10b981",
-      difficulty: "ปานกลาง",
-      accuracy: 88,
-    },
-    {
-      id: "soul-urge",
-      name: "Soul Urge Number",
-      description: "เลขแรงขับใจ คำนวณจากสระในชื่อ",
-      formula: "ผลรวมค่าสระในชื่อเต็ม",
-      example: "เฉพาะ A, E, I, O, U ในชื่อ",
+      id: 'special-abilities',
+      name: 'Special Abilities',
+      category: 'birth',
+      formula: 'เดือน + ปี (เฉพาะตัวเลข)',
+      description: 'ความสามารถพิเศษที่สามารถพัฒนาได้',
+      example: '05 + 1990 → 0+5+1+9+9+0 = 24 → 2+4 = 6',
+      result: 'เลข 6',
+      meaning: 'ความสามารถด้านการดูแล การรักษา ความรับผิดชอบ',
       icon: Heart,
-      color: "#ec4899",
-      difficulty: "ปานกลาง",
-      accuracy: 85,
+      color: '#FF6B9D'
     },
     {
-      id: "personality",
-      name: "Personality Number",
-      description: "เลขบุคลิกภาพ คำนวณจากพยัญชนะ",
-      formula: "ผลรวมค่าพยัญชนะในชื่อเต็ม",
-      example: "ตัวอักษรที่ไม่ใช่สระในชื่อ",
-      icon: Crown,
-      color: "#f59e0b",
-      difficulty: "ปานกลาง",
-      accuracy: 82,
+      id: 'missing-numbers',
+      name: 'Missing Numbers',
+      category: 'birth',
+      formula: 'เลข 1-9 ที่ไม่ปรากฏในวันเกิดและ Life Path',
+      description: 'บทเรียนชีวิตที่ต้องเรียนรู้และพัฒนา',
+      example: 'วันเกิด: 15/05/1990, Life Path: 3 → ขาด 2, 4, 6, 7, 8',
+      result: 'เลข 2, 4, 6, 7, 8',
+      meaning: 'ต้องเรียนรู้ความร่วมมือ ความมั่นคง ความรับผิดชอบ ปัญญา ความสำเร็จ',
+      icon: TrendingUp,
+      color: '#FF4757'
+    },
+
+    // Name-based Formulas
+    {
+      id: 'expression',
+      name: 'Expression Number',
+      category: 'name',
+      formula: 'ผลรวมตัวอักษรทั้งหมดในชื่อเต็ม',
+      description: 'ศักยภาพและความสามารถที่แท้จริงของคุณ',
+      example: 'JOHN SMITH → J(1)+O(6)+H(8)+N(5)+S(1)+M(4)+I(9)+T(2)+H(8) = 44 → 4+4 = 8',
+      result: 'เลข 8',
+      meaning: 'ความสามารถด้านการจัดการ ความสำเร็จ อำนาจ',
+      icon: User,
+      color: '#2ECC71'
     },
     {
-      id: "destiny",
-      name: "Destiny Number",
-      description: "เลขชะตากรรม คำนวณจากชื่อและนามสกุล",
-      formula: "ผลรวมทุกตัวอักษรในชื่อ-นามสกุล",
-      example: "รวมค่าตัวอักษรทั้งหมด",
+      id: 'personality',
+      name: 'Personality Number',
+      category: 'name',
+      formula: 'ผลรวมพยัญชนะในชื่อเต็ม',
+      description: 'บุคลิกภาพที่ผู้อื่นมองเห็นจากภายนอก',
+      example: 'JOHN SMITH → J(1)+H(8)+N(5)+S(1)+M(4)+T(2)+H(8) = 29 → 2+9 = 11',
+      result: 'เลข 11',
+      meaning: 'บุคลิกภาพที่สว่างไสว เป็นแรงบันดาลใจ มีสัญชาตญาณ',
       icon: Star,
-      color: "#06b6d4",
-      difficulty: "ง่าย",
-      accuracy: 90,
+      color: '#E74C3C'
     },
     {
-      id: "maturity",
-      name: "Maturity Number",
-      description: "เลขวุฒิภาวะ คำนวณจาก Life Path + Expression",
-      formula: "Life Path Number + Expression Number",
-      example: "6 + 8 = 14 = 1+4 = 5",
-      icon: Crown,
-      color: "#8b5cf6",
-      difficulty: "ง่าย",
-      accuracy: 87,
+      id: 'heart-desire',
+      name: "Heart's Desire",
+      category: 'name',
+      formula: 'ผลรวมสระในชื่อเต็ม',
+      description: 'ความปรารถนาลึกๆ และแรงจูงใจภายใน',
+      example: 'JOHN SMITH → O(6)+I(9) = 15 → 1+5 = 6',
+      result: 'เลข 6',
+      meaning: 'ปรารถนาความรัก ความรับผิดชอบ การดูแลคนอื่น',
+      icon: Heart,
+      color: '#F39C12'
     },
+    {
+      id: 'maturity',
+      name: 'Maturity Number',
+      category: 'name',
+      formula: 'Life Path + Expression Number',
+      description: 'เป้าหมายและความสำเร็จในช่วงวัยผู้ใหญ่',
+      example: 'Life Path 3 + Expression 8 = 11',
+      result: 'เลข 11',
+      meaning: 'ความสำเร็จด้านจิตวิญญาณ การเป็นแรงบันดาลใจ',
+      icon: TrendingUp,
+      color: '#8E44AD'
+    },
+
+    // Timing Formulas
+    {
+      id: 'personal-year',
+      name: 'Personal Year',
+      category: 'timing',
+      formula: 'วัน + เดือนเกิด + ปีปัจจุบัน',
+      description: 'พลังงานและธีมหลักของปีนี้',
+      example: '15/05 + 2024 → 1+5+0+5+2+0+2+4 = 19 → 1+9 = 1',
+      result: 'ปีเลข 1',
+      meaning: 'ปีแห่งการเริ่มต้นใหม่ ความเป็นผู้นำ โอกาสใหม่',
+      icon: Calendar,
+      color: '#3498DB'
+    },
+    {
+      id: 'personal-month',
+      name: 'Personal Month',
+      category: 'timing',
+      formula: 'Personal Year + เดือนปัจจุบัน',
+      description: 'พลังงานและโฟกัสของเดือนนี้',
+      example: 'Personal Year 1 + เดือน 12 = 13 → 1+3 = 4',
+      result: 'เดือนเลข 4',
+      meaning: 'เดือนแห่งการทำงานหนัก วางแผน สร้างความมั่นคง',
+      icon: Clock,
+      color: '#1ABC9C'
+    },
+    {
+      id: 'personal-day',
+      name: 'Personal Day',
+      category: 'timing',
+      formula: 'Personal Month + วันที่ปัจจุบัน',
+      description: 'พลังงานและแนวทางของวันนี้',
+      example: 'Personal Month 4 + วันที่ 25 = 29 → 2+9 = 11',
+      result: 'วันเลข 11',
+      meaning: 'วันแห่งสัญชาตญาณ ความสว่างไสว การรับรู้',
+      icon: Target,
+      color: '#E67E22'
+    },
+
+    // Advanced Formulas
+    {
+      id: 'challenge-numbers',
+      name: 'Challenge Numbers',
+      category: 'advanced',
+      formula: 'ผลต่างของวัน-เดือน, ปี-วัน, ปี-เดือน และความท้าทายหลัก',
+      description: 'บทเรียนและความท้าทายในแต่ละช่วงชีวิต',
+      example: 'วัน 15→6, เดือน 05→5, ปี 1990→1 → |6-5|=1, |1-6|=5, |1-5|=4, |1-5|=4',
+      result: 'Challenge: 1, 5, 4, 4',
+      meaning: 'ความท้าทาย: ความเป็นผู้นำ, อิสรภาพ, ความมั่นคง',
+      icon: TrendingUp,
+      color: '#C0392B'
+    },
+    {
+      id: 'pinnacle-numbers',
+      name: 'Pinnacle Numbers',
+      category: 'advanced',
+      formula: 'วัน+เดือน, วัน+ปี, Pinnacle1+2, เดือน+ปี',
+      description: 'โอกาสและจุดสูงสุดในแต่ละช่วงชีวิต',
+      example: 'วัน 6+เดือน 5=11, วัน 6+ปี 1=7, 11+7=18→9, เดือน 5+ปี 1=6',
+      result: 'Pinnacle: 11, 7, 9, 6',
+      meaning: 'โอกาส: จิตวิญญาณ, ปัญญา, การให้, ความรัก',
+      icon: Star,
+      color: '#9B59B6'
+    }
   ]
 
-  const letterValues = {
-    A: 1,
-    B: 2,
-    C: 3,
-    D: 4,
-    E: 5,
-    F: 6,
-    G: 7,
-    H: 8,
-    I: 9,
-    J: 1,
-    K: 2,
-    L: 3,
-    M: 4,
-    N: 5,
-    O: 6,
-    P: 7,
-    Q: 8,
-    R: 9,
-    S: 1,
-    T: 2,
-    U: 3,
-    V: 4,
-    W: 5,
-    X: 6,
-    Y: 7,
-    Z: 8,
+  const categories = [
+    { id: 'all', name: 'ทั้งหมด', icon: Calculator, count: formulas.length },
+    { id: 'birth', name: 'จากวันเกิด', icon: Calendar, count: formulas.filter(f => f.category === 'birth').length },
+    { id: 'name', name: 'จากชื่อ', icon: User, count: formulas.filter(f => f.category === 'name').length },
+    { id: 'timing', name: 'เวลา/ช่วงชีวิต', icon: Clock, count: formulas.filter(f => f.category === 'timing').length },
+    { id: 'advanced', name: 'ขั้นสูง', icon: TrendingUp, count: formulas.filter(f => f.category === 'advanced').length }
+  ]
+
+  const filteredFormulas = selectedCategory === 'all' 
+    ? formulas 
+    : formulas.filter(f => f.category === selectedCategory)
+
+  const getCategoryColor = (category: string) => {
+    switch (category) {
+      case 'birth': return '#3B82F6'
+      case 'name': return '#10B981'
+      case 'timing': return '#F59E0B'
+      case 'advanced': return '#8B5CF6'
+      default: return '#6B7280'
+    }
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 p-4">
-      <div className="max-w-7xl mx-auto">
+    <div className="min-h-screen bg-black text-white">
+      {/* Background Pattern */}
+      <div className="fixed inset-0 opacity-5">
+        <div className="w-full h-full bg-gradient-to-br from-purple-500/20 via-blue-500/20 to-indigo-600/20" />
+      </div>
+      
+      <div className="relative z-10 max-w-6xl mx-auto px-4 py-8">
         {/* Header */}
-        <div className="mb-6">
-          <Breadcrumb className="mb-4" />
-          <div className="bg-gradient-to-r from-green-600 to-teal-600 rounded-2xl p-6 text-white">
-            <h1 className="text-3xl font-bold mb-2">สูตรคำนวณเลขศาสตร์</h1>
-            <p className="text-green-100">เรียนรู้วิธีคำนวณเลขศาสตร์ด้วยตัวเอง</p>
+        <div className="flex items-center gap-4 mb-8">
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => router.back()}
+            className="w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 border border-white/20"
+          >
+            <ArrowLeft size={20} />
+          </Button>
+          
+          <div>
+            <h1 className="text-3xl font-bold text-white mb-2">สูตรเลขศาสตร์</h1>
+            <p className="text-gray-400">สูตรการคำนวณเลขศาสตร์ทั้งหมดในระบบ</p>
           </div>
         </div>
 
-        {/* Quick Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-          <UnifiedCard variant="number" className="bg-gradient-to-r from-blue-500 to-cyan-600">
-            <div className="text-center">
-              <div className="text-3xl font-bold text-white">{formulas.length}</div>
-              <div className="text-blue-100">สูตรทั้งหมด</div>
-            </div>
-          </UnifiedCard>
-
-          <UnifiedCard variant="number" className="bg-gradient-to-r from-green-500 to-emerald-600">
-            <div className="text-center">
-              <div className="text-3xl font-bold text-white">87%</div>
-              <div className="text-green-100">ความแม่นยำเฉลี่ย</div>
-            </div>
-          </UnifiedCard>
-
-          <UnifiedCard variant="number" className="bg-gradient-to-r from-purple-500 to-pink-600">
-            <div className="text-center">
-              <div className="text-3xl font-bold text-white">26</div>
-              <div className="text-purple-100">ตัวอักษรในระบบ</div>
-            </div>
-          </UnifiedCard>
+        {/* Category Tabs */}
+        <div className="mb-8">
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
+            {categories.map((category) => (
+              <Card
+                key={category.id}
+                className={`
+                  cursor-pointer transition-all duration-300 p-4 text-center
+                  ${selectedCategory === category.id 
+                    ? 'bg-white/20 border-white/30' 
+                    : 'bg-black/20 border-white/10 hover:border-white/20'
+                  }
+                `}
+                onClick={() => setSelectedCategory(category.id as any)}
+              >
+                <div className="flex flex-col items-center gap-2">
+                  <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
+                    selectedCategory === category.id ? 'bg-white/20' : 'bg-white/10'
+                  }`}>
+                    <category.icon size={20} className="text-white" />
+                  </div>
+                  
+                  <div>
+                    <h3 className="text-white font-medium text-sm">{category.name}</h3>
+                    <Badge variant="secondary" className="mt-1 text-xs bg-purple-500/20 text-purple-300 border-purple-500/30">
+                      {category.count} สูตร
+                    </Badge>
+                  </div>
+                </div>
+              </Card>
+            ))}
+          </div>
         </div>
 
         {/* Formulas Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-          {formulas.map((formula) => (
-            <UnifiedCard key={formula.id} variant="info" className="group hover:scale-105 transition-transform">
-              <div className="p-6">
-                <div className="flex items-center justify-between mb-4">
-                  <div className="flex items-center space-x-3">
-                    <div
-                      className="p-3 rounded-full"
-                      style={{ backgroundColor: `${formula.color}20`, color: formula.color }}
-                    >
-                      <formula.icon className="h-6 w-6" />
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-bold text-white">{formula.name}</h3>
-                      <div className="text-sm text-gray-400">ระดับ: {formula.difficulty}</div>
-                    </div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {filteredFormulas.map((formula) => (
+            <Card key={formula.id} className="bg-black/20 backdrop-blur-xl border border-white/10 p-6 hover:border-white/20 transition-all duration-300">
+              {/* Header */}
+              <div className="flex items-start justify-between mb-4">
+                <div className="flex items-center gap-3">
+                  <div 
+                    className="w-12 h-12 rounded-2xl flex items-center justify-center"
+                    style={{ backgroundColor: `${formula.color}20` }}
+                  >
+                    <formula.icon size={24} style={{ color: formula.color }} />
                   </div>
-                  <div className="text-right">
-                    <div className="text-lg font-bold" style={{ color: formula.color }}>
-                      {formula.accuracy}%
-                    </div>
-                    <div className="text-xs text-gray-400">ความแม่นยำ</div>
-                  </div>
-                </div>
-
-                <p className="text-gray-300 text-sm mb-4">{formula.description}</p>
-
-                <div className="bg-gray-800 rounded-lg p-4 mb-4">
-                  <div className="text-sm text-gray-400 mb-2">สูตร:</div>
-                  <div className="text-white font-mono text-sm">{formula.formula}</div>
-                </div>
-
-                <div className="bg-gray-800 rounded-lg p-4 mb-4">
-                  <div className="text-sm text-gray-400 mb-2">ตัวอย่าง:</div>
-                  <div className="text-green-400 font-mono text-sm">{formula.example}</div>
-                </div>
-
-                {/* Accuracy Bar */}
-                <div className="mb-4">
-                  <div className="flex justify-between text-xs text-gray-400 mb-1">
-                    <span>ความแม่นยำ</span>
-                    <span>{formula.accuracy}%</span>
-                  </div>
-                  <div className="w-full bg-gray-700 rounded-full h-2">
-                    <div
-                      className="h-2 rounded-full transition-all duration-500"
-                      style={{
-                        width: `${formula.accuracy}%`,
-                        backgroundColor: formula.color,
+                  
+                  <div>
+                    <h3 className="text-xl font-bold text-white">{formula.name}</h3>
+                    <Badge 
+                      variant="secondary" 
+                      className="mt-1 text-xs border"
+                      style={{ 
+                        backgroundColor: `${getCategoryColor(formula.category)}20`,
+                        color: getCategoryColor(formula.category),
+                        borderColor: `${getCategoryColor(formula.category)}30`
                       }}
-                    />
+                    >
+                      {categories.find(c => c.id === formula.category)?.name}
+                    </Badge>
+                  </div>
+                </div>
+              </div>
+
+              {/* Description */}
+              <p className="text-gray-300 text-sm mb-4">{formula.description}</p>
+
+              {/* Formula */}
+              <div className="bg-white/5 border border-white/10 rounded-xl p-4 mb-4">
+                <h4 className="text-white font-semibold text-sm mb-2 flex items-center gap-2">
+                  <Calculator className="w-4 h-4 text-blue-400" />
+                  สูตรการคำนวณ
+                </h4>
+                <code className="text-green-300 text-sm font-mono bg-black/30 px-2 py-1 rounded">
+                  {formula.formula}
+                </code>
+              </div>
+
+              {/* Example */}
+              <div className="space-y-3">
+                <div className="bg-white/5 border border-white/10 rounded-xl p-4">
+                  <h4 className="text-white font-semibold text-sm mb-2">ตัวอย่างการคำนวณ</h4>
+                  <p className="text-gray-300 text-sm font-mono">{formula.example}</p>
+                  <div className="mt-2 flex items-center gap-2">
+                    <span className="text-gray-400 text-xs">ผลลัพธ์:</span>
+                    <Badge className="bg-green-500/20 text-green-300 border-green-500/30 text-xs">
+                      {formula.result}
+                    </Badge>
                   </div>
                 </div>
 
-                <button
-                  className="w-full py-2 px-4 rounded-lg text-white font-medium transition-colors"
-                  style={{ backgroundColor: formula.color }}
-                >
-                  ลองคำนวณ
-                </button>
+                <div className="bg-white/5 border border-white/10 rounded-xl p-4">
+                  <h4 className="text-white font-semibold text-sm mb-2">ความหมาย</h4>
+                  <p className="text-gray-300 text-sm">{formula.meaning}</p>
+                </div>
               </div>
-            </UnifiedCard>
+            </Card>
           ))}
         </div>
 
-        {/* Letter Values Chart */}
-        <UnifiedCard variant="info" className="mb-8">
-          <div className="p-6">
-            <h2 className="text-2xl font-bold text-white mb-4">ตารางค่าตัวอักษร</h2>
-            <div className="grid grid-cols-9 gap-2">
-              {Object.entries(letterValues).map(([letter, value]) => (
-                <div key={letter} className="bg-gray-800 rounded-lg p-3 text-center">
-                  <div className="text-white font-bold">{letter}</div>
-                  <div className="text-gray-400 text-sm">{value}</div>
-                </div>
-              ))}
+        {/* Footer Actions */}
+        <div className="mt-12 text-center">
+          <div className="bg-black/20 backdrop-blur-xl border border-white/10 rounded-2xl p-8">
+            <NumerologyIcons.yantra size={48} color="#8B5CF6" className="mx-auto mb-4" />
+            <h3 className="text-2xl font-bold text-white mb-2">พร้อมคำนวณเลขศาสตร์ของคุณ?</h3>
+            <p className="text-gray-400 mb-6">ใช้สูตรเหล่านี้เพื่อค้นพบความลับในตัวเลขของคุณ</p>
+            
+            <div className="flex justify-center gap-4">
+              <Button
+                onClick={() => router.push('/dashboard/my-numbers')}
+                className="bg-gradient-to-r from-purple-500 to-blue-600 hover:from-purple-600 hover:to-blue-700 text-white"
+              >
+                คำนวณเลขของฉัน
+              </Button>
+              <Button
+                onClick={() => router.push('/dashboard/ai-chat')}
+                variant="outline"
+                className="border-white/20 text-gray-300 hover:bg-white/10"
+              >
+                ถาม AI เกี่ยวกับสูตร
+              </Button>
             </div>
           </div>
-        </UnifiedCard>
-
-        {/* Calculator Tool */}
-        <UnifiedCard variant="action">
-          <div className="p-6">
-            <h2 className="text-2xl font-bold text-white mb-4">เครื่องคำนวณ</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">ชื่อเต็ม (ภาษาอังกฤษ)</label>
-                <input
-                  type="text"
-                  placeholder="John Doe"
-                  className="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-green-500"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">วันเกิด</label>
-                <input
-                  type="date"
-                  className="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-green-500"
-                />
-              </div>
-            </div>
-            <button className="mt-4 w-full md:w-auto px-6 py-2 bg-green-600 hover:bg-green-700 text-white font-medium rounded-lg transition-colors">
-              <Calculator className="h-4 w-4 inline mr-2" />
-              คำนวณทั้งหมด
-            </button>
-          </div>
-        </UnifiedCard>
+        </div>
       </div>
     </div>
   )
