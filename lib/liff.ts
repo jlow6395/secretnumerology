@@ -53,6 +53,13 @@ class LiffService {
         const baseUrl = window.location.origin;
         const redirectUri = `${baseUrl}/auth/callback`;
         
+        console.log('🔄 LIFF Login Debug:', {
+          baseUrl,
+          redirectUri,
+          liffId: process.env.NEXT_PUBLIC_LIFF_ID,
+          isInitialized: this.isInitialized
+        });
+        
         liff.login({
           redirectUri: redirectUri
         });

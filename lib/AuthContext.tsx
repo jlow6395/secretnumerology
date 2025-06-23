@@ -179,6 +179,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     
     try {
       console.log('🔄 Starting LINE login process...');
+      console.log('🔧 Environment check:', {
+        LIFF_ID: process.env.NEXT_PUBLIC_LIFF_ID,
+        ADMIN_LINE_ID: ADMIN_LINE_ID,
+        isAvailable: liffService.isAvailable()
+      });
+      
       await liffService.initialize();
       
       if (!liffService.isLoggedIn()) {
