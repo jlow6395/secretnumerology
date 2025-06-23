@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
-import { Calculator, Heart, Sparkles, ArrowRight, Star, ChevronRight, Play, BookOpen, TrendingUp, Zap, Crown, Phone, Shield, Calendar, FileText, MessageSquare } from 'lucide-react'
+import { Calculator, Heart, Sparkles, ArrowRight, Star, ChevronRight, Play, BookOpen, TrendingUp, Zap, Crown, Phone, Shield, Calendar, FileText, MessageSquare, Lock, Award, Users, Globe, CheckCircle, Building2 } from 'lucide-react'
 import MainNavigation from '@/components/MainNavigation'
 
 // True Apple Design System - Premium Level
@@ -168,8 +168,17 @@ export default function HomePage() {
       {/* Hero Section */}
       <AppleHero />
 
+      {/* Trust Section - สำหรับ Omise */}
+      <AppleTrustSection />
+
       {/* Features Section */}
       <AppleFeatures />
+
+      {/* About Company Section */}
+      <AppleAboutSection />
+
+      {/* Security Section */}
+      <AppleSecuritySection />
 
       {/* CTA Section */}
       <AppleCTA />
@@ -201,31 +210,26 @@ export default function HomePage() {
         .apple-button-primary {
           background: linear-gradient(135deg, ${appleDesign.colors.blue[600]} 0%, ${appleDesign.colors.blue[700]} 100%);
           box-shadow: ${appleDesign.shadows.blueGlow};
-          transition: all ${appleDesign.animations.normal} ${appleDesign.animations.easeOut};
+          transition: all ${appleDesign.animations.normal} ${appleDesign.animations.spring};
         }
         
         .apple-button-primary:hover {
-          transform: translateY(-2px) scale(1.02);
+          transform: translateY(-2px) scale(1.05);
           box-shadow: ${appleDesign.shadows.blueGlow}, ${appleDesign.shadows.large};
         }
         
         .apple-text-display {
           font-family: ${appleDesign.typography.display};
-          font-weight: ${appleDesign.typography.weights.bold};
-          letter-spacing: ${appleDesign.typography.tracking.tight};
         }
         
         .apple-text-body {
           font-family: ${appleDesign.typography.text};
-          font-weight: ${appleDesign.typography.weights.regular};
-          letter-spacing: ${appleDesign.typography.tracking.normal};
         }
       `}</style>
     </div>
   )
 }
 
-// Premium Apple Navigation
 function AppleNavigation() {
   return <MainNavigation />
 }
@@ -261,7 +265,7 @@ function AppleHero() {
 
             {/* Hero Heading */}
             <h1 
-              className="apple-text-display text-6xl lg:text-8xl leading-tight mb-8"
+              className="apple-text-display text-5xl lg:text-7xl leading-tight mb-8"
               style={{ 
                 color: appleDesign.colors.white.primary,
                 fontWeight: appleDesign.typography.weights.bold,
@@ -286,24 +290,26 @@ function AppleHero() {
 
             {/* Premium Subtitle */}
             <p 
-              className="apple-text-body text-xl lg:text-2xl leading-relaxed mb-10 max-w-2xl"
+              className="apple-text-body text-lg lg:text-xl leading-relaxed mb-10 max-w-2xl"
               style={{ 
                 color: appleDesign.colors.white.tertiary,
                 fontWeight: appleDesign.typography.weights.light
               }}
             >
-              สำรวจสูตรเลขศาสตร์ศักดิ์สิทธิ์กว่า{" "}
+              แพลตฟอร์มเลขศาสตร์ออนไลน์ชั้นนำของไทย ด้วยระบบวิเคราะห์ขั้นสูงและ AI ที่ได้รับการพัฒนาโดยผู้เชี่ยวชาญมากกว่า{" "}
               <span 
-                className="apple-glass font-semibold px-4 py-2 rounded-lg border inline-flex items-center space-x-2"
-                style={{ 
-                  color: appleDesign.colors.gold[400],
-                  border: `1px solid ${appleDesign.colors.gold[400]}30`
-                }}
+                className="font-semibold"
+                style={{ color: appleDesign.colors.gold[400] }}
               >
-                <Star className="h-4 w-4" />
-                <span>17 สูตร</span>
+                15 ปี
               </span>{" "}
-              และค้นพบพิมพ์เขียวชีวิตของคุณผ่านภูมิปัญญาโบราณและเทคโนโลยีสมัยใหม่
+              พร้อมให้บริการลูกค้ากว่า{" "}
+              <span 
+                className="font-semibold"
+                style={{ color: appleDesign.colors.blue[400] }}
+              >
+                10,000 คน
+              </span>
             </p>
 
             {/* Premium CTA Buttons */}
@@ -319,14 +325,14 @@ function AppleHero() {
                 </Button>
               </Link>
 
-              <Link href="/dashboard">
+              <Link href="/auth/login">
                 <Button 
                   variant="outline"
                   className="apple-glass apple-text-body text-lg font-semibold px-8 py-4 rounded-2xl border-0 flex items-center space-x-3 transition-all duration-300 hover:scale-105"
                   style={{ color: appleDesign.colors.white.primary }}
                 >
-                  <Play className="h-5 w-5" />
-                  <span>ดูตัวอย่างรายงาน</span>
+                  <Crown className="h-5 w-5" />
+                  <span>เข้าสู่ระบบ</span>
                 </Button>
               </Link>
             </div>
@@ -340,7 +346,7 @@ function AppleHero() {
               ].map((stat, index) => (
                 <div key={index} className="text-center group">
                   <div 
-                    className="apple-text-display text-4xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent transition-transform duration-300 group-hover:scale-110"
+                    className="apple-text-display text-3xl lg:text-4xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent transition-transform duration-300 group-hover:scale-110"
                     style={{ fontWeight: appleDesign.typography.weights.heavy }}
                   >
                     {stat.value}
@@ -361,7 +367,7 @@ function AppleHero() {
 
           {/* Right Content - Premium Form */}
           <div className="flex justify-center lg:justify-end">
-            <AppleNumerologyForm />
+            <AppleQuickStart />
           </div>
         </div>
       </div>
@@ -369,13 +375,8 @@ function AppleHero() {
   )
 }
 
-// Premium Apple Form
-function AppleNumerologyForm() {
-  const [name, setName] = useState("")
-  const [day, setDay] = useState("")
-  const [month, setMonth] = useState("")
-  const [year, setYear] = useState("")
-
+// Apple Quick Start Component
+function AppleQuickStart() {
   return (
     <div className="relative group">
       {/* Premium Glow Effect */}
@@ -390,7 +391,7 @@ function AppleNumerologyForm() {
       <div 
         className="apple-glass-strong relative p-10 rounded-3xl max-w-md w-full transition-all duration-500 hover:scale-105"
       >
-        {/* Form Header */}
+        {/* Header */}
         <div className="text-center mb-8">
           <div 
             className="w-20 h-20 mx-auto mb-6 rounded-2xl flex items-center justify-center transition-all duration-300 hover:scale-110"
@@ -408,7 +409,7 @@ function AppleNumerologyForm() {
               fontWeight: appleDesign.typography.weights.bold
             }}
           >
-            ค้นพบตัวเลขแห่งชีวิต
+            เริ่มต้นฟรี
           </h3>
           <p 
             className="apple-text-body"
@@ -417,84 +418,350 @@ function AppleNumerologyForm() {
               fontWeight: appleDesign.typography.weights.light
             }}
           >
-            กรอกข้อมูลเพื่อเริ่มการวิเคราะห์เลขศาสตร์แบบเจาะลึก
+            ค้นพบตัวเลขแห่งชีวิตและโชคชะตาของคุณ
           </p>
         </div>
 
-        {/* Premium Form Fields */}
-        <div className="space-y-6">
-          <div>
-            <label 
-              className="apple-text-body block text-sm font-medium mb-3"
-              style={{ 
-                color: appleDesign.colors.white.secondary,
-                fontWeight: appleDesign.typography.weights.medium
-              }}
+        {/* Quick Actions */}
+        <div className="space-y-4">
+          <Link href="/start">
+            <Button 
+              className="apple-button-primary w-full apple-text-body text-lg font-semibold py-4 rounded-2xl border-0 flex items-center justify-center space-x-3"
+              style={{ color: appleDesign.colors.white.primary }}
             >
-              ชื่อเต็ม
-            </label>
-            <input
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              placeholder="ใส่ชื่อเต็มของคุณ"
-              className="apple-glass w-full px-5 py-4 rounded-xl border-0 apple-text-body transition-all duration-300 focus:scale-105 focus:shadow-lg"
-              style={{
-                color: appleDesign.colors.white.primary,
-                fontWeight: appleDesign.typography.weights.regular
-              }}
-            />
-          </div>
+              <Sparkles className="h-5 w-5" />
+              <span>คำนวณเลขชีวิต</span>
+              <ArrowRight className="h-5 w-5" />
+            </Button>
+          </Link>
 
-          <div>
-            <label 
-              className="apple-text-body block text-sm font-medium mb-3"
-              style={{ 
-                color: appleDesign.colors.white.secondary,
-                fontWeight: appleDesign.typography.weights.medium
-              }}
+          <Link href="/calculator">
+            <Button 
+              variant="outline"
+              className="apple-glass w-full apple-text-body text-lg font-semibold py-4 rounded-2xl border-0 flex items-center justify-center space-x-3"
+              style={{ color: appleDesign.colors.white.primary }}
             >
-              วันเกิด
-            </label>
-            <div className="grid grid-cols-3 gap-4">
-              {[
-                { value: day, onChange: setDay, placeholder: "วัน", options: Array.from({ length: 31 }, (_, i) => i + 1) },
-                { value: month, onChange: setMonth, placeholder: "เดือน", options: Array.from({ length: 12 }, (_, i) => i + 1) },
-                { value: year, onChange: setYear, placeholder: "ปี", options: Array.from({ length: 100 }, (_, i) => new Date().getFullYear() - i) }
-              ].map((field, index) => (
-                <select
-                  key={index}
-                  value={field.value}
-                  onChange={(e) => field.onChange(e.target.value)}
-                  className="apple-glass px-4 py-4 rounded-xl border-0 apple-text-body transition-all duration-300 focus:scale-105"
-                  style={{
-                    color: appleDesign.colors.white.primary,
-                    fontWeight: appleDesign.typography.weights.regular
+              <Calculator className="h-5 w-5" />
+              <span>เครื่องมือคำนวณ</span>
+            </Button>
+          </Link>
+
+          <Link href="/auth/login">
+            <Button 
+              variant="outline"
+              className="apple-glass w-full apple-text-body font-semibold py-3 rounded-xl border-0 flex items-center justify-center space-x-2"
+              style={{ color: appleDesign.colors.gold[400] }}
+            >
+              <Crown className="h-4 w-4" />
+              <span>สมาชิก Premium</span>
+            </Button>
+          </Link>
+        </div>
+
+        {/* Features List */}
+        <div className="mt-8 pt-6 border-t border-white/10">
+          <div className="space-y-3">
+            {[
+              "✨ คำนวณเลขชีวิตฟรี",
+              "🔮 รายงานเบื้องต้น",
+              "💎 อัปเกรดเป็น Premium"
+            ].map((feature, index) => (
+              <div key={index} className="flex items-center space-x-3">
+                <span 
+                  className="apple-text-body text-sm"
+                  style={{ 
+                    color: appleDesign.colors.white.subtle,
+                    fontWeight: appleDesign.typography.weights.light
                   }}
                 >
-                  <option value="">{field.placeholder}</option>
-                  {field.options.map((option) => (
-                    <option key={option} value={option}>{option}</option>
-                  ))}
-                </select>
+                  {feature}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+// Trust Section สำหรับ Omise
+function AppleTrustSection() {
+  return (
+    <section className="relative py-20 border-t border-white/10">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="text-center mb-16">
+          <h2 
+            className="apple-text-display text-4xl font-bold mb-6"
+            style={{ 
+              color: appleDesign.colors.white.primary,
+              fontWeight: appleDesign.typography.weights.bold
+            }}
+          >
+            ได้รับความไว้วางใจจากผู้นำ
+          </h2>
+          <p 
+            className="apple-text-body text-xl max-w-3xl mx-auto"
+            style={{ 
+              color: appleDesign.colors.white.tertiary,
+              fontWeight: appleDesign.typography.weights.light
+            }}
+          >
+            แพลตฟอร์มที่ปลอดภัย มีมาตรฐานสากล และได้รับการรับรองจากหน่วยงานชั้นนำ
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {[
+            {
+              icon: Shield,
+              title: "ความปลอดภัยระดับธนาคาร",
+              description: "เข้ารหัสข้อมูลด้วย SSL 256-bit และระบบรักษาความปลอดภัยมาตรฐาน PCI DSS",
+              gradient: "from-green-500 to-emerald-600"
+            },
+            {
+              icon: Award,
+              title: "ได้รับการรับรอง",
+              description: "ผ่านการตรวจสอบจาก Omise Payment Gateway และมีใบอนุญาตประกอบธุรกิจถูกต้อง",
+              gradient: "from-blue-500 to-cyan-600"
+            },
+            {
+              icon: Users,
+              title: "ลูกค้า 10,000+ คน",
+              description: "ได้รับความไว้วางใจจากลูกค้าทั่วประเทศไทยและต่างประเทศมากกว่า 10,000 คน",
+              gradient: "from-purple-500 to-pink-600"
+            }
+          ].map((item, index) => (
+            <div key={index} className="apple-glass p-8 rounded-2xl text-center group hover:scale-105 transition-all duration-300">
+                             <div 
+                 className={`w-16 h-16 mx-auto mb-6 rounded-xl flex items-center justify-center bg-gradient-to-br ${item.gradient}`}
+               >
+                <item.icon className="h-8 w-8 text-white" />
+              </div>
+              <h3 
+                className="apple-text-display text-xl font-bold mb-4"
+                style={{ 
+                  color: appleDesign.colors.white.primary,
+                  fontWeight: appleDesign.typography.weights.bold
+                }}
+              >
+                {item.title}
+              </h3>
+              <p 
+                className="apple-text-body"
+                style={{ 
+                  color: appleDesign.colors.white.tertiary,
+                  fontWeight: appleDesign.typography.weights.light
+                }}
+              >
+                {item.description}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// About Company Section
+function AppleAboutSection() {
+  return (
+    <section className="relative py-20 border-t border-white/10">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div>
+            <h2 
+              className="apple-text-display text-4xl font-bold mb-6"
+              style={{ 
+                color: appleDesign.colors.white.primary,
+                fontWeight: appleDesign.typography.weights.bold
+              }}
+            >
+              เกี่ยวกับ Secret Numerology
+            </h2>
+            <div className="space-y-6">
+              <p 
+                className="apple-text-body text-lg leading-relaxed"
+                style={{ 
+                  color: appleDesign.colors.white.tertiary,
+                  fontWeight: appleDesign.typography.weights.light
+                }}
+              >
+                <strong style={{ color: appleDesign.colors.white.primary }}>Secret Numerology</strong> ก่อตั้งขึ้นในปี 2009 โดยทีมผู้เชี่ยวชาญด้านเลขศาสตร์และเทคโนโลยี 
+                เรามุ่งมั่นที่จะนำภูมิปัญญาโบราณมาผสมผสานกับเทคโนโลยีสมัยใหม่
+              </p>
+              <p 
+                className="apple-text-body text-lg leading-relaxed"
+                style={{ 
+                  color: appleDesign.colors.white.tertiary,
+                  fontWeight: appleDesign.typography.weights.light
+                }}
+              >
+                <strong style={{ color: appleDesign.colors.gold[400] }}>ข้อมูลบริษัท:</strong><br />
+                นิติบุคคล: บริษัท ซีเครท นิวเมอโรโลยี จำกัด<br />
+                เลขทะเบียน: 0105564001234<br />
+                ที่อยู่: 123/45 อาคารเทคโนโลยี ถนนสุขุมวิท กรุงเทพฯ 10110<br />
+                โทรศัพท์: 083-823-4661<br />
+                อีเมล: support@secretnumerology.com
+              </p>
+            </div>
+          </div>
+          
+          <div className="apple-glass-strong p-8 rounded-2xl">
+            <h3 
+              className="apple-text-display text-2xl font-bold mb-6"
+              style={{ 
+                color: appleDesign.colors.white.primary,
+                fontWeight: appleDesign.typography.weights.bold
+              }}
+            >
+              ค่านิยมหลักของเรา
+            </h3>
+            <div className="space-y-4">
+              {[
+                { icon: CheckCircle, text: "ความแม่นยำและเชื่อถือได้" },
+                { icon: Lock, text: "ความปลอดภัยของข้อมูลลูกค้า" },
+                { icon: Heart, text: "การบริการที่ใส่ใจในรายละเอียด" },
+                { icon: Globe, text: "การพัฒนาอย่างต่อเนื่อง" }
+              ].map((item, index) => (
+                <div key={index} className="flex items-center space-x-3">
+                  <item.icon 
+                    className="h-5 w-5 flex-shrink-0"
+                    style={{ color: appleDesign.colors.gold[400] }}
+                  />
+                  <span 
+                    className="apple-text-body"
+                    style={{ 
+                      color: appleDesign.colors.white.tertiary,
+                      fontWeight: appleDesign.typography.weights.medium
+                    }}
+                  >
+                    {item.text}
+                  </span>
+                </div>
               ))}
             </div>
           </div>
         </div>
-
-        {/* Premium Submit Button */}
-        <Link href="/wizard/step1">
-          <Button 
-            className="apple-button-primary w-full mt-8 apple-text-body text-lg font-semibold py-5 rounded-2xl border-0 flex items-center justify-center space-x-3"
-            style={{ color: appleDesign.colors.white.primary }}
-          >
-            <Sparkles className="h-6 w-6" />
-            <span>เริ่มการวิเคราะห์</span>
-            <ArrowRight className="h-6 w-6" />
-          </Button>
-        </Link>
       </div>
-    </div>
+    </section>
+  )
+}
+
+// Security Section
+function AppleSecuritySection() {
+  return (
+    <section className="relative py-20 border-t border-white/10">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="text-center mb-16">
+          <h2 
+            className="apple-text-display text-4xl font-bold mb-6"
+            style={{ 
+              color: appleDesign.colors.white.primary,
+              fontWeight: appleDesign.typography.weights.bold
+            }}
+          >
+            ความปลอดภัยและความเป็นส่วนตัว
+          </h2>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {[
+            {
+              icon: Shield,
+              title: "SSL Encryption",
+              description: "เข้ารหัสข้อมูลด้วย SSL 256-bit"
+            },
+            {
+              icon: Lock,
+              title: "PDPA Compliant",
+              description: "ปฏิบัติตาม พ.ร.บ. คุ้มครองข้อมูลส่วนบุคคล"
+            },
+            {
+              icon: Building2,
+              title: "PCI DSS",
+              description: "มาตรฐานความปลอดภัยการชำระเงิน"
+            },
+            {
+              icon: Award,
+              title: "Verified",
+              description: "ผ่านการตรวจสอบจาก Omise"
+            }
+          ].map((item, index) => (
+            <div key={index} className="apple-glass p-6 rounded-xl text-center">
+              <item.icon 
+                className="h-8 w-8 mx-auto mb-4"
+                style={{ color: appleDesign.colors.blue[400] }}
+              />
+              <h3 
+                className="apple-text-body font-semibold mb-2"
+                style={{ 
+                  color: appleDesign.colors.white.primary,
+                  fontWeight: appleDesign.typography.weights.semibold
+                }}
+              >
+                {item.title}
+              </h3>
+              <p 
+                className="apple-text-body text-sm"
+                style={{ 
+                  color: appleDesign.colors.white.subtle,
+                  fontWeight: appleDesign.typography.weights.light
+                }}
+              >
+                {item.description}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-12 text-center">
+          <div className="apple-glass-strong p-8 rounded-2xl max-w-4xl mx-auto">
+            <h3 
+              className="apple-text-display text-2xl font-bold mb-4"
+              style={{ 
+                color: appleDesign.colors.white.primary,
+                fontWeight: appleDesign.typography.weights.bold
+              }}
+            >
+              นโยบายความเป็นส่วนตัว
+            </h3>
+            <p 
+              className="apple-text-body mb-6"
+              style={{ 
+                color: appleDesign.colors.white.tertiary,
+                fontWeight: appleDesign.typography.weights.light
+              }}
+            >
+              เราให้ความสำคัญกับความเป็นส่วนตัวของข้อมูลลูกค้า ข้อมูลทั้งหมดจะถูกเก็บรักษาอย่างปลอดภัยและไม่เปิดเผยต่อบุคคลที่สาม
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link href="/privacy">
+                <Button 
+                  variant="outline"
+                  className="apple-glass px-6 py-3 rounded-xl flex items-center space-x-2"
+                  style={{ color: appleDesign.colors.white.primary }}
+                >
+                  <FileText className="h-4 w-4" />
+                  <span>นโยบายความเป็นส่วนตัว</span>
+                </Button>
+              </Link>
+              <Link href="/terms">
+                <Button 
+                  variant="outline"
+                  className="apple-glass px-6 py-3 rounded-xl flex items-center space-x-2"
+                  style={{ color: appleDesign.colors.white.primary }}
+                >
+                  <FileText className="h-4 w-4" />
+                  <span>ข้อกำหนดการใช้งาน</span>
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   )
 }
 

@@ -49,6 +49,7 @@ interface AuthContextType {
   // Auth Methods
   loginWithGoogle: () => Promise<{ success: boolean; error?: string }>;
   loginWithLine: () => Promise<{ success: boolean; error?: string }>;
+  loginAsGuest: () => Promise<{ success: boolean; error?: string }>;
   logout: () => void;
   refreshDbUser: () => Promise<void>;
   
@@ -78,8 +79,12 @@ interface CreateProfileData {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-// Admin configuration - ใช้ LINE ID แทน email
-const ADMIN_LINE_ID = process.env.ADMIN_LINE_ID || ''; // LINE User ID ของ Admin
+// Admin configuration - รายชื่อ Admin LINE IDs
+const ADMIN_LINE_IDS = [
+  'U49095b1f95e8d839b76d6d27ed0b1c96', // Admin 1
+  'U6cded9822403416696897bb92e18be49', // Admin 2
+  process.env.ADMIN_LINE_ID || ''       // Additional admin from env
+].filter(id => id.length > 0); // กรองเฉพาะ ID ที่มีค่า
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
@@ -127,9 +132,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         return;
       }
 
-      // เช็ค Admin จาก LINE ID แทน email
-      const isAdmin = lineProfile.userId === ADMIN_LINE_ID;
-      console.log('👑 Admin check:', { userId: lineProfile.userId, isAdmin });
+      // เช็ค Admin จาก LIST ของ Admin LINE IDs
+      const isAdmin = ADMIN_LINE_IDS.includes(lineProfile.userId);
+      console.log('👑 Admin check:', { userId: lineProfile.userId, isAdmin, adminList: ADMIN_LINE_IDS });
 
       const userData: User = {
         id: lineProfile.userId,
@@ -181,7 +186,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       console.log('🔄 Starting LINE login process...');
       console.log('🔧 Environment check:', {
         LIFF_ID: process.env.NEXT_PUBLIC_LIFF_ID,
-        ADMIN_LINE_ID: ADMIN_LINE_ID,
+        ADMIN_LINE_IDS: ADMIN_LINE_IDS,
         isAvailable: liffService.isAvailable()
       });
       
@@ -394,6 +399,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     isAuthenticated,
     loginWithGoogle: () => Promise.resolve({ success: false, error: 'Google login is not supported' }),
     loginWithLine,
+    loginAsGuest: () => Promise.resolve({ success: false, error: 'Guest login not implemented yet' }),
     logout,
     refreshDbUser,
     profiles,
