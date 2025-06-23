@@ -49,7 +49,8 @@ class LiffService {
       if (!this.isInitialized) await this.initialize();
       if (!liff.isLoggedIn()) {
         // Redirect to callback page after LINE login
-        const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || window.location.origin;
+        // ใช้ window.location.origin สำหรับ local development
+        const baseUrl = window.location.origin;
         const redirectUri = `${baseUrl}/auth/callback`;
         
         liff.login({
