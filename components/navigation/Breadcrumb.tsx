@@ -33,7 +33,7 @@ export default function Breadcrumb({ items, className = "" }: BreadcrumbProps) {
         dashboard: "แดชบอร์ด",
         "my-numbers": "เลขของฉัน",
         "numerology-formulas": "สูตรคำนวณ",
-        "lucky-phone": "เบอร์มงคล",
+    
         "monk-support": "พลังพระเกจิ",
         "angel-numbers": "Angel Numbers",
         yantra: "ยันต์หนุนดวง",

@@ -11,7 +11,7 @@ export default function Sidebar() {
   const navItems = [
     { href: "/dashboard", icon: Home, label: "Home" },
     { href: "/dashboard/my-numbers", icon: Calculator, label: "My Numbers" },
-    { href: "/dashboard/lucky-phone", icon: Phone, label: "Lucky Phone" },
+  
     { href: "/dashboard/monk-guidance", icon: User, label: "Monk Guidance" },
     { href: "/dashboard/angel-numbers", icon: Star, label: "Angel Numbers" },
     { href: "/dashboard/yantra", icon: Shield, label: "ยันต์หนุนดวง" },

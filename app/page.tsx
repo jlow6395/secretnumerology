@@ -789,13 +789,7 @@ function AppleFeatures() {
       href: "/dashboard/ai-chat",
       gradient: "from-blue-500 to-cyan-500",
     },
-    {
-      icon: Phone,
-      title: "โชคลาภโทรศัพท์",
-      description: "เลือกเบอร์โทรศัพท์ที่เสริมดวงชะตาและเข้ากันกับเลขชีวิตของคุณ",
-      href: "/dashboard/lucky-phone",
-      gradient: "from-green-500 to-emerald-500",
-    },
+
     {
       icon: BookOpen,
       title: "รายงานเชิงลึก",

@@ -12,6 +12,7 @@ import {
   BookOpen,
   MessageCircle,
   Settings,
+  User,
 } from "lucide-react"
 
 export const navigationConfig = [
@@ -114,6 +115,20 @@ export const navigationConfig = [
         label: "โปรไฟล์",
         href: "/dashboard/profile",
         icon: Settings,
+      },
+      {
+        id: "numerology-formulas",
+        label: "สูตรคำนวณ",
+        href: "/dashboard/numerology-formulas",
+        icon: BookOpen,
+        description: "สูตรเลขศาสตร์ต่างๆ"
+      },
+      {
+        id: "monk-support",
+        label: "พลังพระเกจิ",
+        href: "/dashboard/monk-support",
+        icon: User,
+        description: "พลังบารมีจากพระเกจิอาจารย์"
       },
     ],
   },

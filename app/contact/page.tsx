@@ -94,7 +94,6 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <h3 className="text-lg font-semibold text-gray-900 mb-2">อีเมล</h3>
-                      <p className="text-gray-600">info@secretnumerology.com</p>
                       <p className="text-gray-600">support@secretnumerology.com</p>
                     </div>
                   </div>
@@ -105,8 +104,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <h3 className="text-lg font-semibold text-gray-900 mb-2">โทรศัพท์</h3>
-                      <p className="text-gray-600">02-123-4567</p>
-                      <p className="text-gray-600">089-123-4567</p>
+                      <p className="text-gray-600">083-823-4661</p>
                     </div>
                   </div>
 
@@ -117,9 +115,13 @@ export default function ContactPage() {
                     <div>
                       <h3 className="text-lg font-semibold text-gray-900 mb-2">ที่อยู่</h3>
                       <p className="text-gray-600">
-                        123 ถนนสุขุมวิท แขวงคลองเตย
+                        บริษัท ซีเครท นิวเมอโรโลยี จำกัด
                         <br />
-                        เขตคลองเตย กรุงเทพฯ 10110
+                        123/45 อาคารเทคโนโลยี ถนนสุขุมวิท
+                        <br />
+                        กรุงเทพฯ 10110
+                        <br />
+                        เลขทะเบียน: 0105564001234
                       </p>
                     </div>
                   </div>

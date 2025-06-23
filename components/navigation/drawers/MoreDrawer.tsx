@@ -17,13 +17,6 @@ export default function MoreDrawer({ isOpen, onClose }: MoreDrawerProps) {
 
   const moreFeatures = [
     {
-      icon: Phone,
-      title: "Lucky Phone Numbers",
-      description: "เลขโทรศัพท์มงคลสำหรับคุณ",
-      color: "#10b981",
-      href: "/dashboard/lucky-phone",
-    },
-    {
       icon: Shield,
       title: "Yantra & Protection",
       description: "ยันต์หนุนดวงและการป้องกัน",

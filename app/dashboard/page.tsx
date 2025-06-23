@@ -81,7 +81,7 @@ export default function DashboardPage() {
                 </h1>
                 <p className="text-xl text-gray-300 leading-relaxed">
                   ค้นพบความลึกลับของตัวเลขในชีวิตคุณ<br />
-                  วิเคราะห์บุคลิกภาพ เส้นทางชีวิต และโชคลาภด้วยเลขศาสตร์
+                  วิเคราะห์บุคลิกภาพ เส้นทางชีวิต และศักยภาพด้วยเลขศาสตร์
                 </p>
               </div>
 
@@ -91,7 +91,7 @@ export default function DashboardPage() {
                   { icon: '🎯', title: 'Life Path', desc: 'เส้นทางชีวิต' },
                   { icon: '💎', title: 'Talent Number', desc: 'เลขพรสวรรค์' },
                   { icon: '💕', title: 'Love Match', desc: 'ความเข้ากันในรัก' },
-                  { icon: '📱', title: 'Lucky Phone', desc: 'เบอร์มงคล' }
+          
                 ].map((feature, index) => (
                   <div key={index} className="p-4 bg-white/5 rounded-2xl border border-white/10">
                     <div className="text-2xl mb-2">{feature.icon}</div>
@@ -379,13 +379,7 @@ export default function DashboardPage() {
               href: '/dashboard/compatibility',
               premium: false
             },
-            {
-              title: 'เบอร์โทรศัพท์มงคล',
-              description: 'หาเบอร์โทรศัพท์ที่เหมาะกับคุณ',
-              icon: '📱',
-              href: '/dashboard/lucky-phone',
-              premium: false
-            },
+
             {
               title: 'AI Chat เลขศาสตร์',
               description: 'ปรึกษา AI เกี่ยวกับเลขศาสตร์',

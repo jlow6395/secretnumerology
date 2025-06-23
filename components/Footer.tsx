@@ -58,7 +58,7 @@ export default function Footer() {
   ]
 
   const stats = [
-    { icon: Users, value: "10K+", label: "ผู้ใช้งาน", color: "from-orange-500 to-red-500" },
+    { icon: Users, value: "10,000+", label: "ผู้ใช้งาน", color: "from-orange-500 to-red-500" },
     { icon: Star, value: "17+", label: "ปีประสบการณ์", color: "from-amber-500 to-orange-500" },
     { icon: Award, value: "4.9★", label: "คะแนนรีวิว", color: "from-yellow-500 to-amber-500" },
     { icon: Heart, value: "99%", label: "ความพึงพอใจ", color: "from-red-500 to-pink-500" },
@@ -175,13 +175,13 @@ export default function Footer() {
                 <div className="p-2 rounded-lg bg-orange-500/10 group-hover:bg-orange-500/20 transition-colors duration-300">
                   <Phone className="h-4 w-4" />
                 </div>
-                <span className="text-sm">+66 2 123 4567</span>
+                <span className="text-sm">083-823-4661</span>
               </div>
               <div className="flex items-center space-x-3 text-gray-400 hover:text-orange-300 transition-colors duration-300 group">
                 <div className="p-2 rounded-lg bg-orange-500/10 group-hover:bg-orange-500/20 transition-colors duration-300">
                   <MapPin className="h-4 w-4" />
                 </div>
-                <span className="text-sm">กรุงเทพมหานคร, ประเทศไทย</span>
+                <span className="text-sm">123/45 อาคารเทคโนโลยี ถนนสุขุมวิท กรุงเทพฯ 10110</span>
               </div>
             </div>
 
@@ -309,19 +309,30 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="mt-16 border-t border-orange-500/20 pt-8">
-          <div className="flex flex-col items-center justify-between space-y-4 md:flex-row md:space-y-0">
-            <p className="text-gray-400 text-sm">© 2024 SecretNumerology. สงวนลิขสิทธิ์ทั้งหมด</p>
-            <div className="flex space-x-6 text-sm">
-              <a href="/privacy" className="text-gray-400 hover:text-orange-300 transition-colors">
+        {/* Company Info Section */}
+        <div className="border-t border-gray-800 pt-8 pb-4">
+          <div className="text-center text-gray-500 text-sm space-y-2">
+            <p>บริษัท ซีเครท นิวเมอโรโลยี จำกัด</p>
+            <p>เลขทะเบียน: 0105564001234</p>
+            <p>123/45 อาคารเทคโนโลยี ถนนสุขุมวิท กรุงเทพฯ 10110</p>
+            <p>โทรศัพท์: 083-823-4661 | อีเมล: support@secretnumerology.com</p>
+          </div>
+        </div>
+
+        {/* Copyright */}
+        <div className="border-t border-gray-800 pt-4">
+          <div className="flex flex-col items-center justify-between space-y-4 sm:flex-row sm:space-y-0">
+            <div className="flex items-center space-x-4">
+              <p className="text-sm text-gray-500">
+                © 2024 SecretNumerology. สงวนลิขสิทธิ์.
+              </p>
+            </div>
+            <div className="flex items-center space-x-6">
+              <a href="/privacy" className="text-sm text-gray-500 hover:text-orange-300 transition-colors duration-300">
                 นโยบายความเป็นส่วนตัว
               </a>
-              <a href="/terms" className="text-gray-400 hover:text-orange-300 transition-colors">
+              <a href="/terms" className="text-sm text-gray-500 hover:text-orange-300 transition-colors duration-300">
                 ข้อกำหนดการใช้งาน
-              </a>
-              <a href="/cookies" className="text-gray-400 hover:text-orange-300 transition-colors">
-                นโยบายคุกกี้
               </a>
             </div>
           </div>

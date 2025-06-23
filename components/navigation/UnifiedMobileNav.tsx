@@ -66,13 +66,7 @@ const navigationItems = [
     description: 'สมาชิกครอบครัว ญาติพี่น้อง',
     color: 'text-green-500'
   },
-  {
-    title: 'เลขมงคลโทรศัพท์',
-    href: '/dashboard/lucky-phone',
-    icon: Phone,
-    description: 'เลขมงคลสำหรับคุณ',
-    color: 'text-purple-500'
-  },
+
   {
     title: 'AI แชทปรึกษา',
     href: '/dashboard/ai-chat',

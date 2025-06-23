@@ -166,7 +166,7 @@ export const TimeIcons = {
  * ไอคอนเรื่องชีวิตสมัยใหม่
  */
 export const ModernLifeIcons = {
-  luckyPhone: Phone,         // เบอร์มงคล
+
   technology: Smartphone,    // เทคโนโลยี
   connection: Wifi,         // การเชื่อมต่อ
   communication: MessageCircle, // การสื่อสาร

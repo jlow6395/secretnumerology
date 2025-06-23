@@ -214,7 +214,7 @@ export default function IconShowcase() {
               </div>
               <div className="flex flex-col items-center gap-1">
                 <NumerologyIcons.phone size={24} color="#10B981" />
-                <span className="text-xs text-gray-400">เบอร์มงคล</span>
+  
               </div>
               <div className="flex flex-col items-center gap-1">
                 <NumerologyIcons.reports size={24} color="#8B5CF6" />

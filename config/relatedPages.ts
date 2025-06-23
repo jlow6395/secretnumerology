@@ -2,23 +2,20 @@
 export const relatedPagesConfig = {
   "my-numbers": [
     {
-      title: "สูตรคำนวณ",
-      description: "เรียนรู้วิธีคำนวณเลขศาสตร์ด้วยตัวเอง",
-      href: "/dashboard/numerology-formulas",
-      category: "เครื่องมือ",
+      title: "Timeline",
+      href: "/dashboard/timeline",
+      description: "ดูเหตุการณ์สำคัญในชีวิต"
     },
     {
-      title: "เบอร์มงคล",
-      description: "ค้นหาเบอร์โทรศัพท์ที่เหมาะกับคุณ",
-      href: "/dashboard/lucky-phone",
-      category: "เครื่องมือ",
-    },
-    {
-      title: "ความเข้ากันในความรัก",
-      description: "ตรวจสอบความเข้ากันกับคู่รัก",
+      title: "Compatibility",
       href: "/dashboard/compatibility",
-      category: "ความสัมพันธ์",
+      description: "ความเข้ากันได้ในด้านต่างๆ"
     },
+    {
+      title: "Life Cycles",
+      href: "/dashboard/life-cycles",
+      description: "วงจรชีวิตและพลังงาน"
+    }
   ],
   compatibility: [
     {
@@ -40,25 +37,34 @@ export const relatedPagesConfig = {
       category: "ความสัมพันธ์",
     },
   ],
-  "lucky-phone": [
+  "monk-support": [
+    {
+      title: "My Numbers",
+      href: "/dashboard/my-numbers",
+      description: "ดูเลขศาสตร์ทั้งหมดของคุณ"
+    },
+    {
+      title: "Yantra",
+      href: "/dashboard/yantra",
+      description: "ยันต์มงคลและการป้องกัน"
+    }
+  ],
+  numerology: [
     {
       title: "เลขของฉัน",
-      description: "ดูเลขศาสตร์ส่วนตัวของคุณ",
       href: "/dashboard/my-numbers",
-      category: "ข้อมูลส่วนตัว",
+      description: "ดูเลขศาสตร์ส่วนตัวของคุณ"
     },
     {
-      title: "Angel Numbers",
-      description: "ความหมายของเลขนางฟ้า",
-      href: "/dashboard/angel-numbers",
-      category: "ความหมาย",
+      title: "ความเข้ากัน",
+      href: "/dashboard/compatibility",
+      description: "ตรวจสอบความเข้ากันกับผู้อื่น"
     },
     {
-      title: "ยันต์หนุนดวง",
-      description: "ยันต์เสริมดวงตามเลขศาสตร์",
-      href: "/dashboard/yantra",
-      category: "เครื่องรางของขลัง",
-    },
+      title: "Timeline",
+      href: "/dashboard/timeline",
+      description: "เส้นทางชีวิตและเหตุการณ์สำคัญ"
+    }
   ],
 }
 
@@ -93,5 +99,17 @@ export const pageNavigationConfig = {
       href: "/dashboard/life-cycles",
       description: "ดูวงจรชีวิตของคุณ",
     },
+  },
+  "monk-support": {
+    previous: {
+      title: "เลขของฉัน",
+      href: "/dashboard/my-numbers",
+      description: "ดูเลขศาสตร์ส่วนตัวของคุณ",
+    },
+    next: {
+      title: "ยันต์มงคล",
+      href: "/dashboard/yantra",
+      description: "ยันต์เสริมดวงและป้องกัน",
+    }
   },
 }

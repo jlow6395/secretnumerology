@@ -422,7 +422,7 @@ export default function AppleDashboard({
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {[
           { icon: NumerologyIcons.love, label: 'ความรัก', color: '#EF4444' },
-          { icon: NumerologyIcons.phone, label: 'เบอร์มงคล', color: '#10B981' },
+  
           { icon: NumerologyIcons.yantra, label: 'ยันต์', color: '#8B5CF6' },
           { icon: NumerologyIcons.aiChat, label: 'AI Chat', color: '#F59E0B' }
         ].map((action, index) => (
